@@ -2,15 +2,15 @@ const { Router } = require("express")
 const userRouter = Router();
 
 
-app.post("/signup", function(req,res){
+userRouter.post("/signup", function(req,res){
     
 })
 
-app.post("/login", function(req,res){
+userRouter.post("/login", function(req,res){
     
 })
 
-app.get("/purchases", function(req,res){
+userRouter.get("/purchases", function(req,res){
     
 })
 
