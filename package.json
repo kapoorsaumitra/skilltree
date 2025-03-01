@@ -1,0 +1,25 @@
+{
+  "name": "skilltree",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kapoorsaumitra/skilltree.git"
+  },
+  "author": "saumitra kapoor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kapoorsaumitra/skilltree/issues"
+  },
+  "homepage": "https://github.com/kapoorsaumitra/skilltree#readme",
+  "dependencies": {
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.11.0",
+    "zod": "^3.24.2"
+  }
+}
