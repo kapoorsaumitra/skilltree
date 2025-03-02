@@ -9,15 +9,15 @@ adminRouter.post("/login",function(req,res){
 
 })
 
-adminRouter.post("/course",function(req,res){
+adminRouter.post("/",function(req,res){
     // create a course
 })
 
-adminRouter.get("/course/bulk",function(req,res){
+adminRouter.get("/bulk",function(req,res){
     // get all the created courses
 })
 
-adminRouter.put("/course",function(req,res){
+adminRouter.put("/",function(req,res){
     // update course details
 })
 
