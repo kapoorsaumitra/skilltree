@@ -1,3 +1,5 @@
+require('dotenv').config()
+const mongoose = require("mongoose")
 const express = require("express")
 const jwt = require("jsonwebtoken")
 const { userRouter } = require("./routes/user")
@@ -11,4 +13,9 @@ app.use("/api/v1/user",userRouter)
 app.use("/api/v1/course",courseRouter)
 app.use("/api/v1/admin",adminRouter)
 
-app.listen(3000)
+async function main() {
+    await mongoose.connect(process.env.MONGO_DB_URL)
+    app.listen(3000)   
+}
+
+main()
