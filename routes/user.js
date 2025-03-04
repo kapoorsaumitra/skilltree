@@ -3,7 +3,7 @@ const userRouter = Router();
 const { userModel, purchaseModel } = require("../db.js");
 const jwt = require("jsonwebtoken");
 const { userMiddleware } = require("../middleware/user.js");
-const JWT_USER_PWD = process.env.JWT_USER_PWD
+const JWT_USER_PWD = process.env.JWT_USER_PWD;
 
 userRouter.post("/signup", async function (req, res) {
   //TODO: add zod validation
@@ -17,53 +17,53 @@ userRouter.post("/signup", async function (req, res) {
       lastName: lastName,
     });
     res.json({
-      message: "account created!"
+      message: "account created!",
     });
   } catch (e) {
     console.error("There has been an error:", e);
     res.status(500).json({
-      error: "Internal Server Error"
+      error: "Internal Server Error",
     });
   }
 });
 
 userRouter.post("/login", async function (req, res) {
   const { email, password } = req.body;
-  // pwd should be hashed, implement bcrypt above and update logic 
+  // pwd should be hashed, implement bcrypt above and update logic
   const user = await userModel.findOne({
     email: email,
-    password: password
+    password: password,
   });
 
-  if(user){
-
+  if (user) {
     // TODO : implement cookies/session based auth
-    const token = jwt.sign({
-      id:user._id
-    },JWT_USER_PWD)
+    const token = jwt.sign(
+      {
+        id: user._id,
+      },
+      JWT_USER_PWD,
+    );
 
     res.json({
-      token : token
-    })
-  }else{
+      token: token,
+    });
+  } else {
     res.status(403).json({
-      message: "login failed -> incorrect creds"
-    })
+      message: "login failed -> incorrect creds",
+    });
   }
 });
 
-userRouter.get("/purchases",userMiddleware, async function (req, res) {
-
-  const userId = req.body.userId
+userRouter.get("/purchases", userMiddleware, async function (req, res) {
+  const userId = req.body.userId;
 
   const purchases = await purchaseModel.find({
-    userId:userId
-  })
+    userId: userId,
+  });
 
   res.json({
-    purchases
-  })
-   
+    purchases,
+  });
 });
 
 module.exports = {
