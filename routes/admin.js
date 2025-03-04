@@ -1,7 +1,8 @@
 const {Router} = require("express")
 const adminRouter = Router()
-const {adminModel } = require("../db.js")
+const {adminModel, courseModel } = require("../db.js")
 const jwt = require("jsonwebtoken")
+const { adminMiddleware } = require("../middleware/admin.js")
 const JWT_ADMIN_PWD = process.env.JWT_ADMIN_PWD
 
 
@@ -52,8 +53,21 @@ adminRouter.post("/login",async function(req,res){
     }
 })
 
-adminRouter.post("/course",function(req,res){
+adminRouter.post("/course",adminMiddleware,async function(req,res){
     // create a course
+    const adminId = req.userId;
+    const {title,description,price,imageUrl} = req.body;
+
+    const course = await courseModel.create({
+        title,description,price,imageUrl,creatorId:adminId
+    })
+
+    res.json({
+        message: "course created",
+        courseId : course._id
+    })
+
+
 })
 
 adminRouter.get("/course/bulk",function(req,res){
