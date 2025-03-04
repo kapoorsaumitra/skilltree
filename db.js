@@ -1,4 +1,4 @@
-
+const mongoose = require("mongoose")
 
 const Schema = mongoose.Schema
 const ObjectId = mongoose.Types.ObjectId
@@ -26,8 +26,8 @@ const courseSchema = new Schema({
 })
 
 const purchaseSchema = new Schema({
-    courseId: { type: ObjectId, ref: 'course' },
-    userId: { type: ObjectId, ref: 'user' }
+    courseId : ObjectId,
+    userId : ObjectId
 })
 
 const userModel = mongoose.model("user",userSchema)
